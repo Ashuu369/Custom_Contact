@@ -1,0 +1,153 @@
+<odoo>
+  <!-- <data> -->
+
+  <record id="view_custom_contact_form" model="ir.ui.view">
+    <field name="name">custom.contact.form</field>
+    <field name="model">custom.contact</field>
+    <field name="arch" type="xml">
+      <form string="Custom Contact">
+        <sheet>
+          <group>
+            <group>
+              <field name="image" widget="image" options="{'size': [150, 150]}" />
+              <field name="name" placeholder="Enter your Name" />
+              <field name="designation" placeholder="Enter your Designation" />
+              <field name="gender" />
+            </group>
+            <group>
+              <field name="phone" placeholder="Enter your mobile number" />
+              <field name="address" placeholder="Enter your Address" />
+              <field name="dob" />
+              <field name="age" />
+              <field name="email" placeholder="Enter the Email" />
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+
+  <record id="view_custom_contact_kanban" model="ir.ui.view">
+    <field name="name">custom.contact.kanban</field>
+    <field name="model">custom.contact</field>
+    <field name="arch" type="xml">
+      <kanban string="Custom Contact">
+        <template>
+          <t t-name="card">
+            <div class="o_kanban_mobile">
+              <div>
+                <field name="image" widget="image" options="{'size': [150, 150]}"></field>
+              </div>
+              <strong>
+                <field name="name"></field>
+              </strong>
+              <br> </br>
+              <field name="designation"></field>
+              <div>
+                <field name="gender"></field>
+              </div>
+              <div>
+                <field name="phone"></field>
+              </div>
+              <div>
+                <field name="address"></field>
+              </div>
+              <div>
+                <field name="dob"></field>
+              </div>
+              <div>
+                <field name="age" />
+              </div>
+              <div>
+                <field name="email"></field>
+              </div>
+            </div>
+          </t>
+        </template>
+      </kanban>
+    </field>
+  </record>
+
+
+  <record id="view_custom_contact_list" model="ir.ui.view">
+    <field name="name">custom.contact.list</field>
+    <field name="model">custom.contact</field>
+    <field name="arch" type="xml">
+      <list string="Custom Contact">
+
+        <field name="image" placeholder="Image" options="{'size': [150, 150]}" />
+        <field name="name" placeholder="Enter your Name" />
+        <field name="gender" />
+        <field name="phone" placeholder="Enter your mobile number" />
+        <field name="address" placeholder="Enter your Address" />
+        <field name="dob" />
+        <field name="age" />
+        <field name="email" placeholder="Enter the Email" />
+      </list>
+    </field>
+  </record>
+
+
+  <!-- <record id="view_custom_contact_activity" model="ir.ui.view">
+    <field name="name">custom.contact.activity</field>
+    <field name="model">custom.contact</field>
+    <field name="arch" type="xml">
+      <activity string="Custom Contact">
+        <templates>
+          <div t-name="activity-box">
+            <field name="name" />
+          </div>
+        </templates>
+      </activity>
+    </field>
+  </record> -->
+
+
+  <record id="action_custom_contact" model="ir.actions.act_window">
+    <field name="name">Custom Contacts</field>
+    <field name="res_model">custom.contact</field>
+    <field name="view_mode">form</field>
+    <field name="view_mode">form,list,kanban</field>
+    <field name="view_id" ref="view_custom_contact_list" />
+  </record>
+  <record id="action_custom_contact_test" model="ir.actions.act_window">
+    <field name="name">Custom Contacts</field>
+    <field name="res_model">custom.contact</field>
+    <field name="view_mode">form</field>
+    <field name="view_mode">kanban</field>
+    <field name="view_id" ref="view_custom_contact_list" />
+  </record>
+
+
+  <menuitem id="customer_menu_root" name="Customer Contacts" action="action_custom_contact"
+    sequence="10" />
+  <menuitem id="menu_customer_details" name="Customer Details" action="action_custom_contact"
+    parent="customer_menu_root"
+    sequence="10" />
+  <menuitem id="sample_1_details" name="sample 1" action="action_custom_contact"
+    parent="menu_customer_details"
+    sequence="1" />
+  <menuitem id="sample_1_1_details" name="sample_1_1" action="action_custom_contact_test"
+    parent="sample_1_details"
+    sequence="10" />
+  <menuitem id="sample_2_details" name="sample 2" action="action_custom_contact"
+    parent="menu_customer_details"
+    sequence="2" />
+  <menuitem id="sample_3_details" name="sample 3" action="action_custom_contact"
+    parent="menu_customer_details"
+    sequence="3" />
+
+</odoo>
+
+<!-- <record id="view_custom_contact_list" model="ir.ui.view">
+    <field name="name">custom.contact.list</field>
+    <field name="model">custom.contact</field>
+    <field name="arch" type="xml">
+      <list string="Custom Contact">
+        <field name="name"/>
+        <field name="number"/>
+        <field name="address"/>
+      </list>
+    </field>
+  </record> -->
